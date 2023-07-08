@@ -1,103 +1,185 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>Новый никнейм | QWE PROJECT</title>
+  </head>
+  <style>
 
-        body {
-            font-weight: 200;
-            background: black;
+    .text-startikon {
+      margin-top: 20px;
+      text-align: center;
+      display: grid;
+      place-items: center;
+    }
+
+    .startikon {
+      box-shadow: 0 0px 7px rgb(255, 255, 255);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      color: white;
+      padding: 10px;
+      margin-top: 30px;
+      font-family: 'Montserrat', sans-serif;
+      width: 325px;
+      height: 200px;
+      font-size: 12px;
+    }
+
+    .startikon:hover {
+      box-shadow: 0 0px 20px rgb(255, 255, 255);
+    }
     
+    button {
+      box-shadow: 0 0px 0px rgb(0, 255, 0);
+      transition: all 0.2s ease;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 30px;
+      height: 50px;
+      width: 150px;
+      background: rgb(255, 255, 255);
+      cursor: pointer;
+      border: 0;
+    }
+
+    button:hover {
+      box-shadow: 0 0px 15px rgb(0, 255, 0);
+      background: rgb(0, 255, 0);
+    }
+
+    #main {
+      display: grid;
+      place-items: center;
+    }
+
+    body {
+      background: black;
+    }
+
+    .rules {
+      font-size: 10px;
+      font-family: monospace;
+      color: rgb(70, 70, 70);
+      width: 325px;
+      height: 100px;
+      margin-top: 0px;
+      overflow: hidden auto;
+    }
+
+    #form {
+      display: none;
+      place-items: center;
+    }
+
+    .cart {
+      padding: 20px;
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: 0 0px 7px rgb(255, 255, 255);
+      transition: all 0.3s ease;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      margin-top: 30px;
+      height: 150px;
+    }
+
+    .cart:hover {
+      box-shadow: 0 0px 18px rgb(255, 255, 255);
+    }
+
+    input {
+      border: 0;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      box-shadow: 0 0px 7px rgb(255, 255, 255);
+      height: 40px;
+      width: 200px;
+      transition: all 0.7s ease;
+      border-radius: 15px;
+    }
+
+    input:focus {
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      box-shadow: 0 0px 18px rgb(255, 255, 255);
+      background-color: white;
+    }
+
+    .finish-button {
+      margin-top: 100px;
+    }
+
+    #error {
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      font-family: sans-serif;
+      color: rgb(255, 0, 0);
+      font-weight: bold;
+    }
+
+  </style>
+  <body>
+    <div id="main">
+      <div class="startikon">
+        <div class="text-startikon">
+          <h1>⚙ Здравствуй Игрок!</h1>
+          <div class="rules">
+            <p>— Это заполнение твоих данных как «ник» и «описание» , просим вас не использовать не понятные иэроглифы , слова связанные с политикой и строго запрещенных маты (особенно в связи упоминания родных )</p>
+          </div>
+        </div>
+      </div>
+
+      <button id="createnick">Продолжить</button>
+    </div>
+  </body>
+  <form id="form">
+    <div class="cart">
+      <h1>Новый никнейм</h1>
+      <input type="text" placeholder="от 5 до 25 символов" id="newnick">
+      <h1>Новое описание</h1>
+      <input type="text" placeholder="от 10 до 100 символов" id="newopis">
+      <div id="error"></div>
+      <button id="finish", class="finish-button">📨 Применить</button>
+    </div>
+  </form>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+      let tg = window.Telegram.WebApp;
+      let createnick = document.getElementById('createnick')
+      let finish = document.getElementById('finish')
+      tg.expand()
+
+
+      createnick.addEventListener('click', () => {
+        document.getElementById('main').style.display = 'none';
+        document.getElementById('form').style.display = 'grid';
+      })
+
+      finish.addEventListener('click', () => {
+        let newnick = document.getElementById('newnick').value;
+
+        if(newopis.length < 10) {
+          document.getElementById('error').innerText = 'описание не подходит';
+          return;
+        } else {
+          if(newopis.length > 100) {
+            document.getElementById('error').innerText = 'описание не подходит';
+            return;
+          }
         }
 
-        
-        #end{
-            margin-left: 170px;
-            margin-top: 30px;
-            margin-bottom: 45px;
-            color: white;
-            padding-top: 5px;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-bottom: 5px;
-            border-radius: 4px;
-            background: grey;
-            border: none;
-        }
-        #end:hover{
-            color: black;
-            background: white;
-            box-shadow: 0px 0px 30px 10px white;
-            transition: 0.4s;
-        }
-        
-        
 
-        #form{
-            display: block;
-            text-align: center;
-            margin-left: 500px;
-            margin-right: 400px;
-            border-radius: 10px;
-            background: black;
-            box-shadow: 0px 5px 20px 20px rgb(255, 255, 255);
+        let data = {
+          status: 'newnick',
+          newnick: newnick,
+          newopis: newopis,
         }
-        input {
-            width: 90%;
-            outline: none;
-            margin: 10px 5%;
-            padding: 15px 10px;
-            font-size: 14px;
-            border: 2px solid silver;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form">
-        <input type="text" placeholder="Напишите ник...." id="nik">
-        <input type="text" placeholder="Напишите описание...." id="opis">
-        <div id="error"></div>
-        <button id="end">📨 Применить</button>
-        
-    </form>
-    
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        let end = document.getElementById("end");
-        tg.expand();
-        
-        
-        
+        tg.sendData(JSON.stringify(data))
+      })
 
-        
-        end.addEventListener("click", () => {
-            
-            let nik = document.getElementById("nik").value;
-            let opis = document.getElementById("opis").value;
-            
-            if(nik.length < 4) {
-                document.getElementById("error").innerText = "Мало в имени"
-                return
-            }
-            
-            tg.close();
-        })
-        
-            let data = {
-                nik: nik,
-                opis: opis,
-            }
-            tg.sendData(JSON.stringify(data));
-    
-    </script>
-</body>
+  </script>
+
 </html>
