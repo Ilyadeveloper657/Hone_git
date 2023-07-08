@@ -125,9 +125,9 @@
     <div id="main">
       <div class="startikon">
         <div class="text-startikon">
-          <h1>⚙ Здравствуй Игрок!</h1>
+          <h1>Правила никнеймов</h1>
           <div class="rules">
-            <p>— Это заполнение твоих данных как «ник» и «описание» , просим вас не использовать не понятные иэроглифы , слова связанные с политикой и строго запрещенных маты (особенно в связи упоминания родных )</p>
+            <p>Запрещенные любые не понятные и не разборчивые иероглифы и так же прозрачные символы, запрещено делать никнейм в оскорбительных целях или же в попытке кого либо унизить. В случае нарушений правил, вы будете наказаны </p>
           </div>
         </div>
       </div>
@@ -139,10 +139,8 @@
     <div class="cart">
       <h1>Новый никнейм</h1>
       <input type="text" placeholder="от 5 до 25 символов" id="newnick">
-      <h1>Новое описание</h1>
-      <input type="text" placeholder="от 10 до 100 символов" id="newopis">
       <div id="error"></div>
-      <button id="finish", class="finish-button">📨 Применить</button>
+      <button id="finish", class="finish-button">Закончить</button>
     </div>
   </form>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -161,12 +159,12 @@
       finish.addEventListener('click', () => {
         let newnick = document.getElementById('newnick').value;
 
-        if(newopis.length < 10) {
-          document.getElementById('error').innerText = 'описание не подходит';
+        if(newnick.length < 5) {
+          document.getElementById('error').innerText = 'никнейм не подходит';
           return;
         } else {
-          if(newopis.length > 100) {
-            document.getElementById('error').innerText = 'описание не подходит';
+          if(newnick.length > 25) {
+            document.getElementById('error').innerText = 'никнейм не подходит';
             return;
           }
         }
@@ -174,8 +172,7 @@
 
         let data = {
           status: 'newnick',
-          newnick: newnick,
-          newopis: newopis,
+          newnick: newnick
         }
         tg.sendData(JSON.stringify(data))
       })
