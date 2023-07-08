@@ -18,6 +18,8 @@
         }
         
         .container{
+            margin: 100%;
+            display: block;
             margin-left: 500px;
             margin-right: 400px;
             border-radius: 10px;
@@ -117,9 +119,13 @@
         let end = document.getElementById("end");
         tg.expand();
         
+        if (go !== null) {
+            go.style.display = 'block';
+        }
+        
         
         go.addEventListener("click", () => {
-            document.getElementById("container").style.display = "none";
+            document.getElementById("container").style.display = "block";
             document.getElementById("form").style.display = "block";
         });
         
