@@ -16,47 +16,7 @@
             background: black;
     
         }
-        
-        .container{
-            margin: 100%;
-            display: block;
-            margin-left: 500px;
-            margin-right: 400px;
-            border-radius: 10px;
-            background: black;
-            box-shadow: 0px 5px 20px 20px rgb(255, 255, 255);
-        }
-        
-        .h{
-            color: white;
-            margin-top: 100px;
-            margin-left: 70px;
-        }
-        .p{
-            color: rgb(95, 100, 100);
-            margin-top: 50px;
-            margin-left: 70px;
-            margin-right: 70px;
-        }
-        .b{
-            margin-left: 170px;
-            margin-top: 30px;
-            margin-bottom: 45px;
-            color: white;
-            padding-top: 5px;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-bottom: 5px;
-            border-radius: 4px;
-            background: grey;
-            border: none;
-        }
-        .b:hover{
-            color: black;
-            background: white;
-            box-shadow: 0px 0px 30px 10px white;
-            transition: 0.4s;
-        }
+
         
         #end{
             margin-left: 170px;
@@ -79,9 +39,9 @@
         }
         
         
-        
+
         #form{
-            display: none;
+            display: block;
             text-align: center;
             margin-left: 500px;
             margin-right: 400px;
@@ -101,37 +61,42 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="h">⚙ Здравствуй Игрок!</h1>
-        <p class="p">— Это заполнение твоих данных как «ник» и «описание» , просим вас не использовать не понятные иэроглифы , слова связанные с политикой и строго запрещенных маты (особенно в связи упоминания родных )</p>
-        <button id="go" class="b">✏️ «Заполнить»</button>
-    </div>
     <form id="form">
         <input type="text" placeholder="Напишите ник...." id="nik">
         <input type="text" placeholder="Напишите описание...." id="opis">
+        <div id="error"></div>
         <button id="end">📨 Применить</button>
+        
     </form>
     
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
-        let go = document.getElementById("go");
         let end = document.getElementById("end");
         tg.expand();
         
-        if (go !== null) {
-            go.style.display = 'block';
-        }
         
         
-        go.addEventListener("click", () => {
-            document.getElementById("container").style.display = "block";
-            document.getElementById("form").style.display = "block";
-        });
+
         
         end.addEventListener("click", () => {
+            
+            let nik = document.getElementById("nik").value;
+            let opis = document.getElementById("opis").value;
+            
+            if(nik.length < 4) {
+                document.getElementById("error").innerText = "Мало в имени"
+                return
+            }
+            
             tg.close();
         })
+        
+            let data = {
+                nik: nik,
+                opis: opis,
+            }
+            tg.sendData(JSON.stringify(data));
     
     </script>
 </body>
